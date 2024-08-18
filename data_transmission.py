@@ -7,7 +7,7 @@ from datetime import datetime
 import random
 
 class MQTTClient:
-    def __init__(self, broker="broker.mqtt.devtest.aws.scania.com", port=8883, topic="AT/test", username="clientTest2", password="Adam@2024"):
+    def __init__(self, broker="", port=8883, topic="", username="", password=""):
         self.client = mqtt.Client()
         self.client.username_pw_set(username, password)
         self.client.tls_set(cert_reqs=ssl.CERT_NONE)  
@@ -51,6 +51,6 @@ class SensorSimulator:
             time.sleep(5)
 
 if __name__ == "__main__":
-    mqtt_client = MQTTClient(password="Adam@2024")
+    mqtt_client = MQTTClient(password="")
     sensor_simulator = SensorSimulator()
     sensor_simulator.start_simulation(mqtt_client)

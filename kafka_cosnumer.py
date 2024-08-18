@@ -11,11 +11,11 @@ def read_from_kafka():
     mylogger.setLevel(logging.DEBUG)
     mylogger.addHandler(logging.StreamHandler())
 
-    with open('scania-root.pem', 'r') as file:
+    with open('root.pem', 'r') as file:
         ca_pem_string = file.read()
 
     if not ca_pem_string:
-        print('scania-root.pem not found')
+        print('-root.pem not found')
         return
     
     config = {
@@ -49,7 +49,7 @@ def read_from_kafka():
             else:
                 # Extract the (optional) key and value, and print.
 
-                print("Consumed event from topic {topic}: key = {key:12} value = {value:12}".format(
+                print("Consumed event from topic {topic}: key = {key:} value = {value:}".format(
                     topic=msg.topic(), key=msg.key().decode('utf-8'), value=msg.value().decode('utf-8')))
     except KeyboardInterrupt:
         pass

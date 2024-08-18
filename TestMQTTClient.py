@@ -20,7 +20,7 @@ class TestMQTTClient(unittest.TestCase):
         data = {"asset": "pump 1", "timestamp": 123456789, "vibration": 0.5, "pressure": 101.5, "temperature": 50.5, "flow": 21.5}
         mqtt_client.publish_sensor_data(data)
 
-        mock_client_instance.publish.assert_called_with("AT/test", json.dumps(data))
+        mock_client_instance.publish.assert_called_with("", json.dumps(data))
         print("Tested publish_sensor_data")
 
     @patch('iot_module.mqtt.Client')
@@ -31,7 +31,7 @@ class TestMQTTClient(unittest.TestCase):
 
         mqtt_client.start_listening(influxdb_manager)
 
-        mock_client_instance.subscribe.assert_called_with("AT/test")
+        mock_client_instance.subscribe.assert_called_with("")
         mock_client_instance.loop_forever.assert_called()
         print("Tested start_listening")
 
